@@ -101,19 +101,58 @@
             padding: 4rem 0;
         }
         
-        /* Past programs gallery styling */
+       /* Enhanced Past Programs gallery styling */
+        .content-section h2 {
+            font-size: 2.5rem; /* Increase font size */
+            color: var(--primary-color); /* Change text color */
+            text-align: center; /* Center align the heading */
+            margin-bottom: 1rem; /* Space below the heading */
+        }
+
+        .content-section p {
+            font-size: 1.2rem; /* Increase font size */
+            line-height: 1.6; /* Better line spacing */
+            text-align: center; /* Center align the paragraph */
+            color: #555; /* Slightly lighter color for the text */
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto 2rem; /* Center the paragraph and add space below */
+            padding: 0 1rem; /* Add some padding for small screens */
+        }
+
+        /* Gallery styling */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
+        /* Gallery item styling */
+        .gallery-item {
+            overflow: hidden; /* Hide overflow for hover effect */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
+        }
+
         .gallery img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 10px; /* Match gallery item radius */
+            transition: transform 0.3s ease; /* Smooth image transition */
         }
+
+        .gallery img:hover {
+            transform: scale(1.1); /* Scale up the image slightly on hover */
+        }
+
+
+
         
         /* Social media icons styling */
         .social-icons {
@@ -196,14 +235,24 @@
             <h2>Past Programs</h2>
             <p>Take a look at some of our previous events and the topics we've covered.</p>
             <div class="gallery">
-                <!-- Replace these with actual images from past programs -->
-                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/1.jpg" alt="Past Program 1">
-                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/2.jpg" alt="Past Program 2">
-                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/3.jpg" alt="Past Program 3">
-                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/4.jpg" alt="Past Program 4">
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/1.jpg" alt="Past Program 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/2.jpg" alt="Past Program 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/3.jpg" alt="Past Program 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/4.jpg" alt="Past Program 4">
+                </div>
             </div>
         </div>
     </section>
+    
+    
+
 
     <!-- Contact section -->
     <section id="contact" class="content-section">
@@ -227,5 +276,10 @@
             <p>&copy; 2024 HR Evolve. All rights reserved.</p>
         </div>
     </footer>
+
+</script>
+
+
+    </script>
 </body>
 </html>
