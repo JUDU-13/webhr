@@ -38,50 +38,82 @@
             color: white;
             padding: 1rem 0;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             height: 50px; /* Adjust as needed */
+            width: auto;
+            margin-right: auto; /* Align logo to the left */
         }
-        
+
+        nav {
+            margin-left: auto; /* Move navigation to the right */
+        }
+
         nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
         }
-        
+
         nav ul li {
             margin-left: 20px;
         }
-        
+
         nav ul li a {
             color: white;
             text-decoration: none;
         }
+
         
-        /* Hero section styling */
+          /* Hero section styling */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/600');
-            background-size: cover;
-            background-position: center;
+            position: relative; /* Position relative for absolute positioning of slides */
             height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            overflow: hidden; /* Hide overflow for slides */
         }
-        
+
+        .slides {
+            position: absolute; /* Position slides absolutely */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Use flex for sliding */
+            transition: transform 0.5s ease-in-out; /* Smooth transition */
+        }
+
+        .slide {
+            min-width: 100%; /* Each slide takes full width */
+            height: 100%; /* Full height */
+            background-size: cover; /* Cover background image */
+            background-position: center; /* Center background image */
+        }
+
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Reduce margin for better spacing */
+            position: relative; /* Ensure text appears above slides */
+            z-index: 1; /* Bring text above slides */
         }
-        
+
+        .hero p {
+            font-size: 1.5rem; /* Adjust the size of the text */
+            margin-bottom: 1rem; /* Space between paragraph and button */
+            position: relative; /* Ensure text appears above slides */
+            z-index: 1; /* Bring text above slides */
+        }
+
         .cta-button {
             display: inline-block;
             background-color: var(--primary-color);
@@ -90,70 +122,70 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            position: relative; /* Ensure button appears above slides */
+            z-index: 1; /* Bring button above slides */
         }
-        
+
         .cta-button:hover {
             background-color: var(--secondary-color);
         }
         
-        /* Content section styling */
-        .content-section {
-            padding: 4rem 0;
-        }
-        
-       /* Enhanced Past Programs gallery styling */
+       /* Keep the previous styles for h2 and p */
         .content-section h2 {
-            font-size: 2.5rem; /* Increase font size */
-            color: var(--primary-color); /* Change text color */
-            text-align: center; /* Center align the heading */
-            margin-bottom: 1rem; /* Space below the heading */
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
         }
 
         .content-section p {
-            font-size: 1.2rem; /* Increase font size */
-            line-height: 1.6; /* Better line spacing */
-            text-align: center; /* Center align the paragraph */
-            color: #555; /* Slightly lighter color for the text */
-            max-width: 800px; /* Limit width for better readability */
-            margin: 0 auto 2rem; /* Center the paragraph and add space below */
-            padding: 0 1rem; /* Add some padding for small screens */
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
         }
 
-        /* Gallery styling */
+        /* Increased spacing around the section */
+        .content-section {
+            padding: 5rem 0; /* Increase top and bottom padding for more space */
+        }
+
+        /* Gallery styling for a single row */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr); /* 4 columns grid */
             gap: 1rem;
+            justify-items: center;
             margin-top: 2rem;
         }
 
-        /* Gallery item styling */
-        .gallery-item {
-            overflow: hidden; /* Hide overflow for hover effect */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05); /* Scale up on hover */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
-        }
-
         .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px; /* Match gallery item radius */
-            transition: transform 0.3s ease; /* Smooth image transition */
+            width: 100%; /* Make sure images take full width */
+            max-width: 250px; /* Limit max size */
+            height: 250px; /* Keep square shape */
+            object-fit: cover; /* Make sure image fits inside square without distortion */
+            border-radius: 10px; /* Slightly rounded corners */
+            position: relative; /* Position for overlay */
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth transition for hover effects */
         }
 
+        /* Simple hover effect */
         .gallery img:hover {
-            transform: scale(1.1); /* Scale up the image slightly on hover */
+            transform: scale(1.05); /* Grows 5% on hover */
+            filter: brightness(0.5); /* Darkens the image */
         }
 
+        /* Mobile responsiveness */
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on smaller screens */
+            }
+        }
 
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr; /* Stack images in 1 column on mobile */
+            }
+        }
 
-        
         /* Social media icons styling */
         .social-icons {
             margin-top: 2rem;
@@ -185,7 +217,8 @@
         <div class="container">
             <div class="header-content">
                 <!-- Logo -->
-                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/logo.png" alt="HR Evolve Logo" class="logo">
+                <!-- Logo section -->
+                     <img src="https://raw.githubusercontent.com/Gourav61/webhr/main/logo.png" alt="HR Evolve Logo" class="logo">
                 <!-- Navigation menu -->
                 <nav>
                     <ul>
@@ -201,6 +234,12 @@
 
     <!-- Hero section -->
     <section class="hero">
+        <div class="slides">
+            <div class="slide active" style="background-image: url('s1.jpg');"></div>
+            <div class="slide" style="background-image: url('s2.jpg');"></div>
+            <div class="slide" style="background-image: url('s3.jpg');"></div>
+            <div class="slide" style="background-image: url('s4.jpg');"></div>
+        </div>
         <div class="container">
             <h1>Evolve Your HR Strategy</h1>
             <p>Join our monthly technology sessions for HR professionals</p>
@@ -212,12 +251,7 @@
     <section id="about" class="content-section">
         <div class="container">
             <h2>About HR Evolve</h2>
-            <p>As the name suggests, HR Evolve is a community where HR professionals and enthusiasts come together to evolve. Anyone
-            can freely exchange their ideas and gain valuable insights into various aspects of human resources, with a strong focus
-            on continuous learning and the profession's future. Each month, on the third Thursday, experts lead in-depth sessions
-            that explore a wide range of topics on the roles of HR. We champion a forward-thinking approach to how HR practices can
-            adapt and innovate to meet emerging challenges, making this an ideal space for networking, professional development, and
-            driving progress within the field.</p>
+            <p>HR Evolve is a monthly technology hangout for HR professionals and technology enthusiasts. We analyze and evaluate emerging trends in HR technology to help you stay ahead in your field.</p>
         </div>
     </section>
 
@@ -235,25 +269,21 @@
             <h2>Past Programs</h2>
             <p>Take a look at some of our previous events and the topics we've covered.</p>
             <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/1.jpg" alt="Past Program 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/2.jpg" alt="Past Program 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/3.jpg" alt="Past Program 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/4.jpg" alt="Past Program 4">
-                </div>
+                <!-- Replace these with actual images from past programs -->
+                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/1.jpg" alt="Past Program 1">
+                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/2.jpg" alt="Past Program 2">
+                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/3.jpg" alt="Past Program 3">
+                <img src="https://raw.githubusercontent.com/JUDU-13/webhr/main/4.jpg" alt="Past Program 4">
+                <img src="5.jpg" alt="Past Program 5">
+
             </div>
         </div>
     </section>
     
     
-
-
+    
+    
+    
     <!-- Contact section -->
     <section id="contact" class="content-section">
         <div class="container">
@@ -277,9 +307,23 @@
         </div>
     </footer>
 
-</script>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
 
+        function showSlide(index) {
+            const offset = -index * 100; // Calculate the offset for sliding effect
+            document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+        }
 
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length; // Loop back to first slide
+            showSlide(currentIndex);
+        }
+
+        // Automatically change slides every 3 seconds for quicker transition
+        setInterval(nextSlide, 3000); // Change time as needed
     </script>
+
 </body>
 </html>
