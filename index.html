@@ -315,8 +315,14 @@
         }
 
         .footer-column a:hover {
-            color: #FF4500;
+            color: #1C84B4; /* Fallback color */
+            background: linear-gradient(to right, #1C84B4, #1E2A38);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
         }
+
 
         .footer-logo {
             height: 60px;
