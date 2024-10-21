@@ -51,7 +51,9 @@
             width: auto;
             margin-right: auto; /* Align logo to the left */
         }
-
+        .burger{
+            display: none;
+        }
         nav {
             margin-left: auto; /* Move navigation to the right */
         }
@@ -69,6 +71,7 @@
         nav ul li a {
             color: white;
             text-decoration: none;
+            cursor: pointer;
         }
 
         /* Navigation menu styling for mobile */
@@ -206,6 +209,13 @@
         }
 
         @media (max-width: 768px) {
+        nav{
+            display: none;
+        }
+        .burger{
+            display: block;
+            cursor: pointer;
+        }
         .gallery {
             grid-template-columns: 1fr; /* Stack images in 1 column on mobile */
         }
@@ -342,8 +352,10 @@
         /* Responsive */
         @media (max-width: 768px) {
             .footer-container {
+                padding: 1rem;
                 flex-direction: column;
                 align-items: center;
+                align-items: start;
             }
         }
         @media (min-width: 1024px) {
@@ -352,6 +364,63 @@
     }
 }
 
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.mobile-nav .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.mobile-nav .close-btn line {
+    stroke-width: 4;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.mobile-nav ul li {
+    margin: 20px 0;
+}
+
+.mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+.mobile-nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+}
 
     </style>
 </head>
@@ -369,9 +438,28 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
+                <svg class="burger" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleMenu()">
+                    <rect x="2" y="5" width="20" height="3" fill="white"/>
+                    <rect x="2" y="11" width="20" height="3" fill="white"/>
+                    <rect x="2" y="17" width="20" height="3" fill="white"/>
+                  </svg>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <svg class="close-btn" width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleMenu()">
+            <line x1="4.5" y1="4.5" x2="19.5" y2="19.5" stroke="white" stroke-width="4"/>
+            <line x1="4.5" y1="19.5" x2="19.5" y2="4.5" stroke="white" stroke-width="4"/>
+        </svg>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#past-programs">Past Programs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero section -->
     <section class="hero">
@@ -511,23 +599,43 @@
             <p>&copy; 2024 HR Evolve India. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentIndex = 0;
-
+    
+        const mobileNav = document.querySelector('.mobile-nav');
+        let isMenuOpen = false;
+    
         function showSlide(index) {
             const offset = -index * 100; // Calculate the offset for sliding effect
             document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
         }
-
+    
         function nextSlide() {
             currentIndex = (currentIndex + 1) % slides.length; // Loop back to first slide
             showSlide(currentIndex);
         }
-
+    
         // Automatically change slides every 3 seconds for quicker transition
         setInterval(nextSlide, 3000); // Change time as needed
+    
+        function toggleMenu() {
+            if (isMenuOpen) {
+                gsap.to(mobileNav, { right: '-100%', duration: 0.1 });
+            } else {
+                gsap.to(mobileNav, { right: '0%', duration: 0.1 });
+            }
+            isMenuOpen = !isMenuOpen;
+        }
+    
+        // Close the mobile nav when a link is clicked
+        document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                gsap.to(mobileNav, { right: '-100%', duration: 0.1 });
+                isMenuOpen = false;
+            });
+        });
     </script>
 
 </body>
